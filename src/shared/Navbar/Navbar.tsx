@@ -6,6 +6,7 @@ import HeartIcon from "../../components/Icons/HeartIcon";
 import CartShoppingIcon from "../../components/Icons/CartShoppingIcon";
 import MenuIcon from "../../components/Icons/MenuIcon";
 import Badge from "../Ui/Badge";
+import CloseIcon from "../../components/Icons/CloseIcon";
 
 const basePath = "/dashboard";
 const navLinks = [
@@ -102,8 +103,9 @@ export default function Navbar() {
             <button
               onClick={handleCloseMenu}
               aria-label="Close Menu"
-              className="text-gray-900 hover:text-cyan-400 transition"
+              className="text-gray-900 hover:text-cyan-400 transition flex justify-center items-center"
             >
+              <CloseIcon className="mx-0.5" />
               Close
             </button>
           </div>
