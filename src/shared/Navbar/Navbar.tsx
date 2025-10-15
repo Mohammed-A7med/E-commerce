@@ -1,80 +1,114 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import UserIcon from "../../components/Icons/UserIcon";
 import HeartIcon from "../../components/Icons/HeartIcon";
 import CartShoppingIcon from "../../components/Icons/CartShoppingIcon";
 import MenuIcon from "../../components/Icons/MenuIcon";
+import Badge from "../Ui/Badge";
+
+const basePath = "/dashboard";
+const navLinks = [
+  { to: `${basePath}/home`, label: "Home" },
+  { to: `${basePath}/products`, label: "Products" },
+  { to: `${basePath}/brands`, label: "Brands" },
+  { to: `${basePath}/orders`, label: "Orders" },
+];
 
 export default function Navbar() {
-  const basePath = "/dashboard";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navLinks = [
-    { to: `${basePath}/home`, label: "Home" },
-    { to: `${basePath}/products`, label: "Products" },
-    { to: `${basePath}/brands`, label: "Brands" },
-    { to: `${basePath}/orders`, label: "Orders" },
-  ];
+  const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const handleCloseMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="bg-teal-700">
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between ">
-          <div className="md:flex md:items-center md:gap-12">
-            <Link className="block text-gray-900" to={basePath}>
-              <span className="sr-only">Home</span>
-              E-Commerce
-            </Link>
-          </div>
+    <nav className="shadow-md px-4 sm:px-6 lg:px-10 bg-white relative z-50">
+      <div className="flex h-16 items-center justify-between">
+        {/* Logo */}
+        <NavLink
+          to={basePath}
+          className="text-xl font-semibold text-gray-900 tracking-wide hover:text-cyan-400 transition"
+        >
+          <span className="sr-only">Home</span>
+          E-Commerce
+        </NavLink>
 
-          <div className="hidden md:block">
-            <nav aria-label="Global">
-              <ul className="flex items-center gap-6 text-sm">
-                {navLinks.map(({ to, label }) => (
-                  <li key={label}>
-                    <Link
-                      className="text-gray-900 transition hover:text-cyan-400"
-                      to={to}
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
-              <Link
-                className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500"
-                to="/login"
+        {/* main Nav */}
+        <ul className="hidden md:flex items-center gap-6 text-sm font-medium">
+          {navLinks.map(({ to, label }) => (
+            <li key={label}>
+              <NavLink
+                to={to}
+                className={({ isActive }) =>
+                  `transition-colors hover:text-cyan-400 ${
+                    isActive ? "text-cyan-400" : "text-gray-900"
+                  }`
+                }
               >
-                Sign in
-              </Link>
+                {label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
 
-              <div className="hidden sm:flex">
-                <Link
-                  className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-                  to="/register"
-                >
-                  Sign up
-                </Link>
-              </div>
+        {/* Icons + Mobile Menu */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <UserIcon className="hidden sm:flex" />
+            <div className="relative">
+              <HeartIcon className="hover:text-cyan-400 transition" />
+              <Badge value={1} />
             </div>
-
-            <div className="icons flex gap-2">
-              <UserIcon className="hidden sm:flex" />
-              <HeartIcon />
-              <CartShoppingIcon  />
-            </div>
-
-            <div className="block md:hidden">
-              <button className="rounded-sm bg-gray-200 p-2 text-gray-900 transition hover:text-gray-900/75 dark:bg-gray-800">
-                <MenuIcon />
-              </button>
+            <div className="relative">
+              <CartShoppingIcon className="hover:text-cyan-400 transition" />
+              <Badge value={1} />
             </div>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={handleToggleMenu}
+            aria-label="Toggle Menu"
+            className="md:hidden rounded bg-gray-100 p-2 text-gray-900 hover:bg-gray-200 transition"
+          >
+            <MenuIcon />
+          </button>
         </div>
       </div>
-    </header>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white shadow-inner border-t border-gray-200 animate-slideDown">
+          <ul className="flex flex-col items-center gap-4 py-6 text-base font-medium">
+            {navLinks.map(({ to, label }) => (
+              <li key={label}>
+                <NavLink
+                  to={to}
+                  onClick={handleCloseMenu}
+                  className={({ isActive }) =>
+                    `block px-4 py-2 rounded transition-colors duration-200 hover:text-cyan-400 ${
+                      isActive ? "text-cyan-400" : "text-gray-900"
+                    }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+
+          {/* Close button */}
+          <div className="flex justify-center border-t border-gray-200 py-3">
+            <button
+              onClick={handleCloseMenu}
+              aria-label="Close Menu"
+              className="text-gray-900 hover:text-cyan-400 transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }
