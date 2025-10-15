@@ -1,3 +1,10 @@
+interface MenuIconProps {
+  width?: number;
+  height?: number;
+  className?: string;
+  stroke?: string;
+  strokeWidth?: number;
+}
 
 export default function MenuIcon({
   width = 24,
@@ -5,15 +12,7 @@ export default function MenuIcon({
   className = "",
   stroke = "currentColor",
   strokeWidth = 2,
-  title,
-}: {
-  width?: number;
-  height?: number;
-  className?: string;
-  stroke?: string;
-  strokeWidth?: number;
-  title?: string;
-}) {
+}: MenuIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,11 +22,9 @@ export default function MenuIcon({
       fill="none"
       stroke={stroke}
       strokeWidth={strokeWidth}
-      className={className}
-      aria-hidden={title ? "false" : "true"}
+      className={`${className} cursor-pointer`}
       role="img"
     >
-      {title && <title>{title}</title>}
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
