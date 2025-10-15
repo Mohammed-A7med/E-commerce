@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import UserIcon from "../../components/Icons/UserIcon";
+import HeartIcon from "../../components/Icons/HeartIcon";
+import CartShoppingIcon from "../../components/Icons/CartShoppingIcon";
+import MenuIcon from "../../components/Icons/MenuIcon";
 
 export default function Navbar() {
   const basePath = "/dashboard";
@@ -39,35 +42,37 @@ export default function Navbar() {
             </nav>
           </div>
 
-          <div className="icons flex gap-2">
-            <UserIcon />
-          </div>
-          {/* 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <a
+              <Link
                 className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm dark:hover:bg-teal-500"
-                href="#"
+                to="/login"
               >
-                Login
-              </a>
+                Sign in
+              </Link>
 
               <div className="hidden sm:flex">
-                <a
+                <Link
                   className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-                  href="#"
+                  to="/register"
                 >
-                  Register
-                </a>
+                  Sign up
+                </Link>
               </div>
             </div>
 
+            <div className="icons flex gap-2">
+              <UserIcon className="hidden sm:flex" />
+              <HeartIcon />
+              <CartShoppingIcon  />
+            </div>
+
             <div className="block md:hidden">
-              <button className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
-               
+              <button className="rounded-sm bg-gray-200 p-2 text-gray-900 transition hover:text-gray-900/75 dark:bg-gray-800">
+                <MenuIcon />
               </button>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </header>
