@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import UserIcon from "../../components/Icons/UserIcon";
-import HeartIcon from "../../components/Icons/HeartIcon";
-import CartShoppingIcon from "../../components/Icons/CartShoppingIcon";
-import MenuIcon from "../../components/Icons/MenuIcon";
-import Badge from "../Ui/Badge";
-import CloseIcon from "../../components/Icons/CloseIcon";
+import UserIcon from "../../Icons/UserIcon";
+import HeartIcon from "../../Icons/HeartIcon";
+import CartShoppingIcon from "../../Icons/CartShoppingIcon";
+import MenuIcon from "../../Icons/MenuIcon";
+import Badge from "../../shared/Ui/Badge";
+import CloseIcon from "../../Icons/CloseIcon";
 
 const basePath = "/dashboard";
 const navLinks = [
