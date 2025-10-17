@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import UserIcon from "../../Icons/UserIcon";
@@ -7,6 +8,7 @@ import CartShoppingIcon from "../../Icons/CartShoppingIcon";
 import MenuIcon from "../../Icons/MenuIcon";
 import Badge from "../../shared/Ui/Badge";
 import CloseIcon from "../../Icons/CloseIcon";
+import type { RootState } from "../../store";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -17,6 +19,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { counter } = useSelector((state: RootState) => state.counter);
 
   const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
   const handleCloseMenu = () => setIsMenuOpen(false);
@@ -61,7 +64,7 @@ export default function Navbar() {
             </div>
             <div className="relative">
               <CartShoppingIcon className="hover:text-cyan-400 transition" />
-              <Badge value={1} />
+              <Badge value={counter} />
             </div>
           </div>
 
