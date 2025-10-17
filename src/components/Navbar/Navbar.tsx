@@ -9,7 +9,7 @@ import Badge from "../../shared/Ui/Badge";
 import CloseIcon from "../../Icons/CloseIcon";
 
 const navLinks = [
-  { to: "/home", label: "Home" },
+  { to: "/", label: "Home" },
   { to: "/products", label: "Products" },
   { to: "/brands", label: "Brands" },
   { to: "/orders", label: "Orders" },
