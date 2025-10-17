@@ -8,12 +8,11 @@ import MenuIcon from "../../Icons/MenuIcon";
 import Badge from "../../shared/Ui/Badge";
 import CloseIcon from "../../Icons/CloseIcon";
 
-const basePath = "/dashboard";
 const navLinks = [
-  { to: `${basePath}/home`, label: "Home" },
-  { to: `${basePath}/products`, label: "Products" },
-  { to: `${basePath}/brands`, label: "Brands" },
-  { to: `${basePath}/orders`, label: "Orders" },
+  { to: "/home", label: "Home" },
+  { to: "/products", label: "Products" },
+  { to: "/brands", label: "Brands" },
+  { to: "/orders", label: "Orders" },
 ];
 
 export default function Navbar() {
@@ -27,7 +26,7 @@ export default function Navbar() {
       <div className="flex h-16 items-center justify-between">
         {/* Logo */}
         <NavLink
-          to={basePath}
+          to={"/home"}
           className="text-xl font-semibold text-gray-900 tracking-wide hover:text-cyan-400 transition"
         >
           <span className="sr-only">Home</span>
