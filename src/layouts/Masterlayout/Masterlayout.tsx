@@ -1,6 +1,12 @@
+import { Outlet } from "react-router-dom";
+
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function Masterlayout() {
   return (
-    <div>Masterlayout</div>
-  )
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
 }
