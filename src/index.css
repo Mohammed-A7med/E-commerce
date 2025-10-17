@@ -1,6 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@100..900&family=Prata&display=swap");
 @import "tailwindcss";
 
-* {
+/* Global font */
+body{
   font-family: "Outfit", sans-serif;
+}
+
+@theme {
+  --font-prata: "Prata", serif;
+  --font-libre: "Libre Baskerville", serif;
 }
